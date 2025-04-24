@@ -17,6 +17,7 @@ public class Seller {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)

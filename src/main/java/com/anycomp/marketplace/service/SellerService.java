@@ -25,8 +25,13 @@ public class SellerService {
     }
 
     public Seller createSeller(Seller seller) {
+        boolean exists = sellerRepository.existsByEmail(seller.getEmail());
+        if (exists) {
+            throw new IllegalArgumentException("A seller with this email already exists.");
+        }
         return sellerRepository.save(seller);
     }
+    
 
     public Seller updateSeller(Long id, Seller updatedSeller) {
         return sellerRepository.findById(id)

@@ -34,9 +34,17 @@ public class ItemService {
 
     public Item addItemToSeller(Long sellerId, Item item) {
         Seller seller = sellerRepository.findById(sellerId).orElseThrow();
+    
+        // Check if an item with the same name already exists for this seller
+        boolean exists = itemRepository.existsByNameAndSellerId(item.getName(), sellerId);
+        if (exists) {
+            throw new IllegalArgumentException("Item with the same name already exists for this seller.");
+        }
+    
         item.setSeller(seller);
         return itemRepository.save(item);
     }
+    
 
     public Item updateItem(Long id, Item updatedItem) {
         return itemRepository.findById(id)

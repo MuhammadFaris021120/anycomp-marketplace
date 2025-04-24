@@ -1,5 +1,7 @@
 package com.anycomp.marketplace.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +15,7 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String name;
 
     private String description;
@@ -22,6 +25,7 @@ public class Item {
     private int quantity;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "seller_id")
     private Seller seller;
 }
