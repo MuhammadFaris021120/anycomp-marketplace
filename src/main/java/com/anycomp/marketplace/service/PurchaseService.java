@@ -8,6 +8,7 @@ import com.anycomp.marketplace.repository.ItemRepository;
 import com.anycomp.marketplace.repository.PurchaseRepository;
 import org.springframework.stereotype.Service;
 
+
 import java.time.LocalDateTime;
 
 @Service
@@ -41,6 +42,7 @@ public class PurchaseService {
         purchase.setItem(item);
         purchase.setQuantity(quantity);
         purchase.setPurchaseDate(LocalDateTime.now());
+        purchase.setBoughtItemId(item.getId());
 
         return purchaseRepository.save(purchase);
     }

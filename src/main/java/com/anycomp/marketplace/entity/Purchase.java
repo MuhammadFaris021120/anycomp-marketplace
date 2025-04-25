@@ -30,4 +30,7 @@ public class Purchase {
     private int quantity;
 
     private LocalDateTime purchaseDate;
+
+    @Column(name = "bought_item_id")
+    private Long boughtItemId;  // 👈 Now this will be saved to DB
 }

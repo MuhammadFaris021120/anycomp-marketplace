@@ -21,6 +21,7 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
+    
     @GetMapping("/items/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable Long id) {
         return itemService.getItemById(id)
