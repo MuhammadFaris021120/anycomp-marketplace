@@ -20,7 +20,7 @@ public class BuyerController {
         this.buyerService = buyerService;
     }
 
-    @GetMapping("/buyers")
+    @GetMapping
 public Page<Buyer> getAllBuyers(@ParameterObject Pageable pageable) {
     return buyerService.getAllBuyers(pageable);
 }
