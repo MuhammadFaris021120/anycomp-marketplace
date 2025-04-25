@@ -4,6 +4,11 @@ import com.anycomp.marketplace.entity.Item;
 import com.anycomp.marketplace.service.ItemService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import io.swagger.v3.oas.annotations.Parameter;
+import org.springdoc.core.annotations.ParameterObject;
 
 import java.util.List;
 
@@ -17,11 +22,12 @@ public class ItemController {
     }
 
     @GetMapping("/items")
-    public List<Item> getAllItems() {
-        return itemService.getAllItems();
-    }
+public Page<Item> getAllItems(
+        @ParameterObject Pageable pageable
+) {
+    return itemService.getAllItems(pageable);
+}
 
-    
     @GetMapping("/items/{id}")
     public ResponseEntity<Item> getItemById(@PathVariable Long id) {
         return itemService.getItemById(id)

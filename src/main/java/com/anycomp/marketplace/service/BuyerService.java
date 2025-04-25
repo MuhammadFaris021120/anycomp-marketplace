@@ -3,6 +3,8 @@ package com.anycomp.marketplace.service;
 import com.anycomp.marketplace.entity.Buyer;
 import com.anycomp.marketplace.repository.BuyerRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +18,8 @@ public class BuyerService {
         this.buyerRepository = buyerRepository;
     }
 
-    public List<Buyer> getAllBuyers() {
-        return buyerRepository.findAll();
+    public Page<Buyer> getAllBuyers(Pageable pageable) {
+        return buyerRepository.findAll(pageable);
     }
 
     public Optional<Buyer> getBuyerById(Long id) {

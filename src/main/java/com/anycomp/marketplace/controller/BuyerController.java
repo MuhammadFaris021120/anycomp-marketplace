@@ -4,6 +4,9 @@ import com.anycomp.marketplace.entity.Buyer;
 import com.anycomp.marketplace.service.BuyerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -17,10 +20,10 @@ public class BuyerController {
         this.buyerService = buyerService;
     }
 
-    @GetMapping
-    public List<Buyer> getAllBuyers() {
-        return buyerService.getAllBuyers();
-    }
+    @GetMapping("/buyers")
+public Page<Buyer> getAllBuyers(@ParameterObject Pageable pageable) {
+    return buyerService.getAllBuyers(pageable);
+}
 
     @GetMapping("/{id}")
     public ResponseEntity<Buyer> getBuyerById(@PathVariable Long id) {
